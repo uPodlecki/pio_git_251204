@@ -44,4 +44,18 @@ public class IntLinkedList {
     public int getI() {
         return i;
     }
+
+    private static class Node {
+
+        private final int value;
+        public Node prev, next;
+        public Node(int i) {
+            value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+    }
 }

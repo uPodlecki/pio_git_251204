@@ -1,41 +1,73 @@
 package edu.kis.vh.nursery;
 
+/**
+ * Klasa DefaultCountingOutRhymer implementuje prosty stos liczbowy
+ * z ograniczoną wielkością oraz operacjami dodawania, podglądu i usuwania.
+ */
 public class DefaultCountingOutRhymer {
 
-    public static final int INTm1 = -1;
-    public static final int INT12 = 12;
-    public static final int INT11 = 11;
-    private final int[] numbers = new int[INT12];
+    private static final int CAPACITY = 12;
+    private static final int EMPTY = -1;
 
-    public int getTotal() {
-        return total;
-    }
+    private final int[] numbers = new int[CAPACITY];
+    private int total = EMPTY;
 
-    private int total = INTm1;
-
+    /**
+     * Dodaje wartość na stos, jeśli nie jest on pełny.
+     *
+     * @param in wartość do dodania na stos
+     */
     public void countIn(int in) {
         if (!isFull())
             numbers[++total] = in;
     }
 
+    /**
+     * Sprawdza, czy stos jest pusty.
+     *
+     * @return true jeśli stos jest pusty, false w przeciwnym razie
+     */
     public boolean callCheck() {
-        return total == INTm1;
+        return total == EMPTY;
     }
 
+    /**
+     * Sprawdza, czy stos jest pełny.
+     *
+     * @return true jeśli stos jest pełny, false w przeciwnym razie
+     */
     public boolean isFull() {
-        return total == INT11;
+        return total == CAPACITY - 1;
     }
 
-    protected int peekaboo() {
+    /**
+     * Zwraca aktualną liczbę elementów na stosie.
+     *
+     * @return indeks ostatniego elementu (lub -1 jeśli pusty)
+     */
+    protected int getTotal() {
+        return total;
+    }
+
+    /**
+     * Zwraca ostatnio dodaną wartość bez jej usuwania (podgląd).
+     *
+     * @return ostatnia wartość na stosie lub -1 jeśli pusty
+     */
+    public int peekaboo() {
         if (callCheck())
-            return INTm1;
+            return EMPTY;
         return numbers[total];
     }
 
+    /**
+     * Usuwa i zwraca ostatnio dodaną wartość ze stosu.
+     *
+     * @return usunięta wartość lub -1 jeśli pusty
+     */
     public int countOut() {
         if (callCheck())
-            return INTm1;
+            return EMPTY;
         return numbers[total--];
     }
-
 }
